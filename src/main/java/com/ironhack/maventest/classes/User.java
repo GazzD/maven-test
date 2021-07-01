@@ -1,5 +1,7 @@
 package com.ironhack.maventest.classes;
 
+import com.ironhack.maventest.enums.UserStatus;
+
 import java.util.Objects;
 
 public class User {
@@ -7,11 +9,21 @@ public class User {
     private String name;
     private String email;
     private int age;
+    private UserStatus status;
+
 
     public User(String name, String email, int age) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.status = UserStatus.ONLINE;
+    }
+
+    public User(String name, String email, int age, UserStatus status) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.status = status;
     }
 
     public String getName() {
@@ -38,6 +50,14 @@ public class User {
         this.age = age;
     }
 
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,5 +69,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getEmail(), getAge());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", status=" + status +
+                '}';
     }
 }

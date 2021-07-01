@@ -1,21 +1,80 @@
 package com.ironhack.maventest.main;
 
 import com.google.gson.Gson;
-import com.ironhack.maventest.classes.Invoice;
-import com.ironhack.maventest.classes.InvoiceItem;
-import com.ironhack.maventest.classes.MathLibrary;
-import com.ironhack.maventest.classes.User;
+import com.ironhack.maventest.classes.*;
+import com.ironhack.maventest.enums.UserStatus;
+import com.ironhack.maventest.enums.Weekday;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hola Mundo Maven");
-        classEquivalences();
-        exceptionClass();
+
+        System.out.println(UserStatus.INACTIVE.ordinal());
+
+        User user = new User("Víctor", "vcardozof@gmail.com", 31);
+
+        System.out.println(Weekday.SUNDAY);
+
+        System.out.println(user);
+
+        user.setStatus(UserStatus.BANNED);
+
+        System.out.println(user);
+
+        System.out.println(user.getStatus().getTranslation());
+
+
+        List<String> names = new ArrayList<>();
+        names.add("Alejandro");
+        names.add("Hiban");
+        names.add("Alicia");
+        names.add("Irene");
+
+        names.set(1, "Iván");
+        names.remove(0);
+
+        System.out.println(names);
+
+        for(int i=0; i<names.size();i++) {
+            System.out.println(names.get(i));
+        }
+
+        Map<String, String> countriesCapital = new HashMap<>();
+        countriesCapital.put("Italia", "Roma");
+        countriesCapital.put("Españita", "Madrid");
+        countriesCapital.put("Kazajistan", "Astaná");
+
+        System.out.println(countriesCapital.get("Italia"));
+
+        Map<String, Country> countries = new HashMap<>();
+        Country italy = new Country("Italy", "Roma", 60);
+        countries.put("Italia", italy);
+        countries.put("Españita", new Country("Spain", "Madrid", 47));
+        countries.put("Kazajistan", new Country("Kazajistan", "Astaná", 18));
+
+        System.out.println(countries.get("Españita").getPopulation());
+
+        countries.put("Españita", italy);
+        System.out.println(countries.get("Españita").getPopulation());
+
+        countries.put("España", new Country("Spain", "Madrid", 47));
+        countries.remove("Españita");
+
+        System.out.println(countries);
+
+        for(Country country : countries.values()) {
+            System.out.println(country.getCapital());
+        }
+
+        for(String countryName : countries.keySet()){
+            System.out.println("Key: " + countryName + " Value: " + countries.get(countryName));
+        }
+
+        countries.forEach((k, v) -> System.out.println("k: " + k + " v: " + v.getCapital()));
+
 
     }
 
